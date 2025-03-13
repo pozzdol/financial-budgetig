@@ -1,8 +1,19 @@
 import React from "react";
 import { BsInfoCircle } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 function Transactions(props) {
-  const { src, nominal, keterangan, jenis } = props;
+  const { src, nominal, keterangan, jenis, waktu, tabungan } = props;
+
+  const showAlert = () => {
+    Swal.fire({
+      title: jenis === "Pemasukan" ? "Pemasukan" : "Pengeluaran",
+      text: `Pada ${waktu}, transaksi sebesar ${nominal} dilakukan untuk ${keterangan} menggunakan tabungan ${tabungan}.`,
+      icon: jenis === "Pemasukan" ? "success" : "warning",
+      confirmButtonText: "Close",
+    });
+  };
+
   return (
     <div
       className={`flex items-center p-4 max-w-md mx-auto space-x-4 border-b-2 border-gray-200 ${
@@ -23,7 +34,8 @@ function Transactions(props) {
         <p className="text-sm text-gray-600">{keterangan || "Keterangan"}</p>
       </div>
       {/* Ikon Info */}
-      <a
+      <button
+        onClick={showAlert}
         href="#"
         className={`p-4 rounded-xl transition ${
           jenis === "Pemasukan"
@@ -32,7 +44,7 @@ function Transactions(props) {
         }`}
       >
         <BsInfoCircle size={24} />
-      </a>
+      </button>
     </div>
   );
 }

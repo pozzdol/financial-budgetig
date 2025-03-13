@@ -9,7 +9,7 @@ function Card(props) {
       href={url}
       target={url ? `_blank` : `_self`}
       rel="noopener noreferrer"
-      className="w-44 h-16 flex items-center gap-2 justify-start bg-blue-100 hover:bg-blue-500 text-blue-800 hover:text-white font-semibold rounded-xl shadow-md transition duration-300 mt-4 ps-3"
+      className="w-full h-16 flex items-center gap-2 xs:justify-start bg-blue-100 hover:bg-blue-500 text-blue-800 hover:text-white font-semibold rounded-xl shadow-md transition duration-300 p-0 ps-7 xs:ps-3"
     >
       {Icon ? <Icon size={35} /> : <BsPlusCircle size={35} />}
       <span className="ms-2">{text || "Add Transaction"}</span>

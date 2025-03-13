@@ -70,6 +70,26 @@ function App() {
     }
   };
 
+  const formatTanggal = (value) => {
+    const date = new Date(value);
+
+    // Format tanggal: 08 Maret 2025
+    const formattedDate = date.toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+    // Format waktu: jam 12:19
+    const formattedTime = date.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false, // Menggunakan format 24 jam
+    });
+
+    return `${formattedDate} jam ${formattedTime}`;
+  };
+
   if (error) return <p className="text-red-500">Error fetching data</p>;
 
   return (
@@ -78,20 +98,23 @@ function App() {
         <User />
         <MainCard balance={formatRupiah(saldoAkhir)} />
 
-        <div className="flex flex-wrap items-center justify-between max-w-sm mx-auto mb-4">
+        <div
+          className="flex flex-wrap xs:grid xs:grid-cols-2 gap-2 items-center justify-between max-w-sm mx-auto mb-4"
+          style={{ width: "87%" }}
+        >
           <Card url="https://forms.gle/2T36XFXUxU2r6qF6A" />
           <Card url="" text="Account Details" icon={BsWallet} />
           <Card url="" text="Transaction Details" icon={BsCreditCard2Front} />
           <Card url="" text="Print Reports" icon={BsFileEarmarkPdf} />
         </div>
 
-        <div className="max-w-sm mx-auto">
+        <div className="max-w-sm mx-auto" style={{ width: "87%" }}>
           <p className="text-lg font-semibold text-gray-800 mt-7">
             Latest Transactions
           </p>
         </div>
 
-        <div className="max-w-sm mx-auto mt-4">
+        <div className="max-w-sm mx-auto mt-4" style={{ width: "90%" }}>
           <div className="flex gap-2 mb-4">
             <button
               className={`px-4 py-2 rounded ${
@@ -141,6 +164,8 @@ function App() {
                   nominal={formatRupiah(item["Rp."])}
                   keterangan={item.Keperluan}
                   jenis={item.Jenis}
+                  waktu={formatTanggal(item.Timestamp)}
+                  tabungan={item.Tabungan}
                 />
               ))
           ) : (

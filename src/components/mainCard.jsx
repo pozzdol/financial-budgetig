@@ -6,7 +6,10 @@ function MainCard(props) {
   const [showBalance, setShowBalance] = useState(false);
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-lg rounded-lg p-6 my-4">
+    <div
+      className="max-w-sm mx-auto bg-gradient-to-r from-blue-500 to-blue-700 text-white shadow-lg rounded-lg p-6 my-4"
+      style={{ width: "87%" }}
+    >
       {/* Balance Section */}
       <h5 className="text-lg font-medium mb-2">Balance</h5>
       <div className="flex gap-3 items-center">
