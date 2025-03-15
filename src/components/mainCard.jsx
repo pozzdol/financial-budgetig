@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 function MainCard(props) {
-  const { balance } = props;
-  const [showBalance, setShowBalance] = useState(false);
+  const { balance, loading } = props;
+  const [showBalance, setShowBalance] = useState(true);
 
   return (
     <div
@@ -12,13 +12,19 @@ function MainCard(props) {
     >
       {/* Balance Section */}
       <h5 className="text-lg font-medium mb-2">Balance</h5>
-      <div className="flex gap-3 items-center">
+      <div className="flex justify-between items-center">
         <p className="text-2xl font-bold">
-          {showBalance ? "Rp *******" : balance}
+          {loading ? (
+            <div className="w-44 h-8 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-500 rounded-sm animate-pulse"></div>
+          ) : showBalance ? (
+            "Rp *******"
+          ) : (
+            balance
+          )}
         </p>
         <button
           onClick={() => setShowBalance(!showBalance)}
-          className="focus:outline-none"
+          className="focus:outline-none me-3"
         >
           {showBalance ? <FiEye size={22} /> : <FiEyeOff size={22} />}
         </button>

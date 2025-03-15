@@ -3,7 +3,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import Swal from "sweetalert2";
 
 function Transactions(props) {
-  const { src, nominal, keterangan, jenis, waktu, tabungan } = props;
+  const { src, nominal, keterangan, jenis, waktu, tabungan, loading } = props;
 
   const showAlert = () => {
     Swal.fire({
@@ -21,30 +21,49 @@ function Transactions(props) {
       }`}
     >
       {/* Gambar Profil */}
-      <img
-        src={src || "https://placehold.co/150"}
-        alt="User Avatar"
-        className="w-16 h-16 rounded-full object-contain bg-white"
-      />
+      {loading ? (
+        <div className="w-16 h-16 rounded-full object-contain bg-gradient-to-br from-blue-50 to-gray-300 animate-pulse"></div>
+      ) : (
+        <img
+          src={src || "https://placehold.co/150"}
+          alt="User Avatar"
+          className="w-16 h-16 rounded-full object-contain bg-white"
+        />
+      )}
       {/* Informasi Transaksi */}
       <div className="flex-1">
-        <p className="text-lg font-semibold text-gray-800">
-          {jenis === "Pemasukan" ? "" : "-"} {nominal || "Rp. 0"}
-        </p>
-        <p className="text-sm text-gray-600">{keterangan || "Keterangan"}</p>
+        {loading ? (
+          <>
+            <div className="w-32 h-7 bg-gradient-to-br from-blue-50 to-gray-300 animate-pulse"></div>
+            <div className="w-44 h-5 mt-1 bg-gradient-to-br from-blue-50 to-gray-300 animate-pulse"></div>
+          </>
+        ) : (
+          <>
+            <p className="text-lg font-semibold text-gray-800">
+              {jenis === "Pemasukan" ? "" : "-"} {nominal || "Rp. 0"}
+            </p>
+            <p className="text-sm text-gray-600">
+              {keterangan || "Keterangan"}
+            </p>
+          </>
+        )}
       </div>
       {/* Ikon Info */}
-      <button
-        onClick={showAlert}
-        href="#"
-        className={`p-4 rounded-xl transition ${
-          jenis === "Pemasukan"
-            ? "text-blue-500 hover:text-blue-700 bg-blue-100"
-            : "text-red-500 hover:text-red-700 bg-red-100"
-        }`}
-      >
-        <BsInfoCircle size={24} />
-      </button>
+      {loading ? (
+        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-50 to-gray-300 animate-pulse"></div>
+      ) : (
+        <button
+          onClick={showAlert}
+          href="#"
+          className={`p-4 rounded-xl transition ${
+            jenis === "Pemasukan"
+              ? "text-blue-500 hover:text-blue-700 bg-blue-100"
+              : "text-red-500 hover:text-red-700 bg-red-100"
+          }`}
+        >
+          <BsInfoCircle size={24} />
+        </button>
+      )}
     </div>
   );
 }
