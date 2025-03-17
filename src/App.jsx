@@ -9,7 +9,7 @@ import Print from "./pages/Print";
 function App() {
   return (
     <>
-      <div className="max-w-3xl mx-auto shadow-none md:shadow-xl">
+      <div className="max-w-3xl mx-auto shadow-none md:shadow-xl min-h-screen">
         <User />
 
         {/* Routing di Level Tertinggi */}
