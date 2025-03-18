@@ -49,6 +49,26 @@ function Account() {
     }).format(value);
   };
 
+  const formatTanggal = (value) => {
+    const date = new Date(value);
+
+    // Format tanggal: 08 Maret 2025
+    const formattedDate = date.toLocaleDateString("id-ID", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+    // Format waktu: jam 12:19
+    const formattedTime = date.toLocaleTimeString("id-ID", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false, // Menggunakan format 24 jam
+    });
+
+    return `${formattedDate} jam ${formattedTime}`;
+  };
+
   if (error) {
     return <p>Error: {error.message}</p>;
   }
@@ -137,7 +157,7 @@ function Account() {
                 nominal={formatRupiah(item["Rp."])}
                 keterangan={item.Keperluan}
                 jenis={item.Jenis}
-                waktu={new Date(item.Timestamp).toLocaleString()}
+                waktu={formatTanggal(item.Timestamp)}
                 tabungan={item.Tabungan}
               />
             ))
