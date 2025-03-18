@@ -40,7 +40,7 @@ function CardAccount(props) {
       case "JAGO":
         return "Bank";
       default:
-        return "e-Money"; // Jika tidak ada match, kosongkan gambar
+        return "e-Wallet"; // Jika tidak ada match, kosongkan gambar
     }
   };
 
@@ -73,7 +73,7 @@ function CardAccount(props) {
               />
               <span>{tabungan}</span>
             </div>
-            <span className="text-xs px-2 bg-slate-100 rounded-full">
+            <span className="text-xs px-2 bg-white rounded-full text-slate-700">
               {getBank(tabungan)}
             </span>
           </div>
