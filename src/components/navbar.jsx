@@ -1,56 +1,15 @@
-import { useState } from "react";
-import { FaBars, FaTimes, FaHome, FaUser, FaPhone } from "react-icons/fa";
+import React from "react";
+import { BiHome } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+function Navbar() {
   return (
-    <nav className="bg-blue-600 p-4 text-white">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <div className="text-2xl font-bold flex items-center gap-2">
-          <FaHome />
-          <span>MyWebsite</span>
-        </div>
-
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-6 text-lg">
-          <li className="flex items-center gap-2 hover:text-gray-200 cursor-pointer">
-            <FaHome /> Home
-          </li>
-          <li className="flex items-center gap-2 hover:text-gray-200 cursor-pointer">
-            <FaUser /> About
-          </li>
-          <li className="flex items-center gap-2 hover:text-gray-200 cursor-pointer">
-            <FaPhone /> Contact
-          </li>
-        </ul>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-2xl"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <ul className="md:hidden flex flex-col bg-blue-700 p-4 mt-2 space-y-4">
-          <li className="flex items-center gap-2 hover:text-gray-200 cursor-pointer">
-            <FaHome /> Home
-          </li>
-          <li className="flex items-center gap-2 hover:text-gray-200 cursor-pointer">
-            <FaUser /> About
-          </li>
-          <li className="flex items-center gap-2 hover:text-gray-200 cursor-pointer">
-            <FaPhone /> Contact
-          </li>
-        </ul>
-      )}
-    </nav>
+    <div className="fixed  bottom-4 right-4 bg-gradient-to-r from-blue-500 to-blue-700 text-white p-4 sm:p-2 rounded-full shadow-lg z-10">
+      <Link to="/" className="text-lg hover:text-gray-400">
+        <BiHome size={30} />
+      </Link>
+    </div>
   );
-};
+}
 
 export default Navbar;

@@ -1,7 +1,7 @@
 import React from "react";
 
 function CardAccount(props) {
-  const { tabungan, nominal } = props;
+  const { tabungan, nominal, loading } = props;
 
   const getCardColor = (tabungan) => {
     const colors = {
@@ -46,26 +46,40 @@ function CardAccount(props) {
 
   return (
     <>
-      <div
-        className={`w-full xs:w-44 p-2 px-3 bg-gradient-to-br ${getCardColor(
-          tabungan
-        )} rounded-lg flex flex-col`}
-      >
-        <div className="flex justify-between items-center mb-3">
-          <div className="flex gap-2 items-center ">
-            <img
-              src={getBankLogo(tabungan)}
-              alt=""
-              className="w-6 h-6 bg-white rounded-full p-[2px]"
-            />
-            <span>{tabungan}</span>
+      {loading ? (
+        // Placeholder loading saat data belum ada
+        <div className="w-full xs:w-44 p-2 px-3 bg-gradient-to-br from-red-100 to-red-200 rounded-lg flex flex-col animate-pulse">
+          <div className="flex justify-between items-center mb-3">
+            <div className="flex gap-2 items-center">
+              <div className="w-6 h-6 bg-gradient-to-tl from-slate-100 to-slate-200 rounded-full p-[2px] animate-pulse"></div>
+              <span className="w-12 h-6 bg-gradient-to-tl from-slate-100 to-slate-200 animate-pulse"></span>
+            </div>
+            <span className="text-xs w-14 h-4 bg-gradient-to-tl from-slate-100 to-slate-200 animate-pulse rounded-full"></span>
           </div>
-          <span className="text-xs px-2 bg-slate-100 rounded-full">
-            {getBank(tabungan)}
-          </span>
+          <span className="w-14 h-6 bg-gradient-to-tl from-slate-100 to-slate-200 animate-pulse"></span>
         </div>
-        <span className="font-semibold">{nominal}</span>
-      </div>
+      ) : (
+        <div
+          className={`w-full xs:w-44 p-2 px-3 bg-gradient-to-br ${getCardColor(
+            tabungan
+          )} rounded-lg flex flex-col`}
+        >
+          <div className="flex justify-between items-center mb-3">
+            <div className="flex gap-2 items-center">
+              <img
+                src={getBankLogo(tabungan)}
+                alt=""
+                className="w-6 h-6 bg-white rounded-full p-[2px]"
+              />
+              <span>{tabungan}</span>
+            </div>
+            <span className="text-xs px-2 bg-slate-100 rounded-full">
+              {getBank(tabungan)}
+            </span>
+          </div>
+          <span className="font-semibold">{nominal}</span>
+        </div>
+      )}
     </>
   );
 }
