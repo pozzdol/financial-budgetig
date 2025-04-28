@@ -2,7 +2,7 @@ import axios from "axios";
 
 // URL dari Google Apps Script (Setelah Deployment)
 const GOOGLE_SCRIPT_URL =
-  "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLgfGxAXb0tedUhO9-qGJURfXpZGKYEeveZpzplqN1TQZXbveAFRVY8lu7MfAn4wBhXejlCkRhyAnkPBYFCPiTYJhZkgRp3xKZmKOfvg_02cKwoWqtGMa8s5JNOE4cpTOANo_ffF_YQjmpiBpvF5rXDwDYp810Rm6EVaSSJEZd1iDO1CpYYdQMA3rZ8EUaVftHkJp9P0b4rGXXCoh1el_Lz6mJXsw9PDJuBSNTv84QxWcK509puXl8Y0YbVqeZhuBJTQ1ndHDoNONmlAPmBV11-yuAtKlTSGnWxuy5FL&lib=MghHWd8IohWBD6kg1AwFs-jZ9wbAprOwi";
+  "https://script.google.com/macros/s/AKfycbzJgHLVfmfWsfxdgyYVUp0LO-bENC1x8dvrIyGr0mloxJMrxZN87k5JdbOEAJ9kNJId/exec";
 
 export const fetchSheetData = async () => {
   try {
